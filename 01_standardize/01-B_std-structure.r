@@ -1,5 +1,5 @@
 ## ----------------------------------------------- ##
-# Standardize Raw Data
+# Standardize Raw Data _Structure_
 ## ----------------------------------------------- ##
 ## Purpose:
 # Accept raw river data and standardize it into the format required by later scripts
