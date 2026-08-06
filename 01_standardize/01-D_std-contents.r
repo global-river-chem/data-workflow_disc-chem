@@ -6,12 +6,12 @@
 # Note this is done on a per-river basis so will create as many standard files as there were raw files
 ## This is _many_ files so expect the per-river operation to be quick but the total operation to be time-consuming
 
-# Get set up
-source(file = file.path("-setup.r"))
-
 # Load libraries
 ## install.packages("librarian")
 librarian::shelf(tidyverse)
+
+# Get set up
+source(file = file.path("-setup.r"))
 
 # Clear environment + collect garbage
 rm(list = ls()); gc()
