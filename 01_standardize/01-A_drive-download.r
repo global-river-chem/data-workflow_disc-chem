@@ -58,7 +58,7 @@ for(focal_folder in unique(invent_v02$data_drive.folder)){
 
   # Filter inventory to only this Drive folder's raw files
   focal_invent <- invent_v02 %>% 
-    dplyr::filter(data_drive.folder == focal_folder)
+    dplyr::filter(data_drive.link == focal_folder)
 
   # Filter to only data files identified in inventory
   focal_raw <- focal_conts %>% 
