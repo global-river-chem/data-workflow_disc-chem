@@ -118,7 +118,7 @@ for(focal_data in sort(invent_v05$std_filename)){
 
   # Export
   write.csv(x = river_std, row.names = FALSE, na = '',
-    file = file.path("data", "01-B_std-structure", river_invent$std_filename))
+    file = file.path("data", "01-B_std-structure", paste0("01-B_", river_invent$std_filename)))
 }
 
 # End ----
