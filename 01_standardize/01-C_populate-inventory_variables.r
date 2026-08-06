@@ -9,12 +9,12 @@
 ## 3. First and last years of measurement for each variable
 ## 4. Duration of measurement for each variable
 
-# Get set up
-source(file = file.path("-setup.r"))
-
 # Load libraries
 ## install.packages("librarian")
 librarian::shelf(tidyverse, readxl)
+
+# Get set up
+source(file = file.path("-setup.r"))
 
 # Clear environment + collect garbage
 rm(list = ls()); gc()
@@ -25,13 +25,13 @@ rm(list = ls()); gc()
 # We only want to do this operation for files not already defined in the 'variables' sheet
 
 # Load relevant piece of data inventory
-invent.var_v01 <- readxl::read_excel(path = file.path("data", "data-inventory.xlsx"), sheet = "variables")
+invent.var_v01 <- readxl::read_excel(path = file.path("data", "data-inventory_raw.xlsx"), sheet = "variables")
 
 # Check structure
 dplyr::glimpse(invent.var_v01)
 
 # Identify local standard files
-local_std <- dir(path = file.path("data", "01_standard"))
+local_std <- dir(path = file.path("data", "01-B_std-structure"))
 
 # Remove files already described in variables sheet of data inventory
 (needed_std <- setdiff(x = local_std, y = invent.var_v01$standard_filename))
@@ -47,14 +47,14 @@ message(length(local_std) - length(needed_std), " fewer files in need of extract
 var_list <- list()
 
 # Loop across rivers
-for(focal_river in needed_std){
-  # focal_river <- "australian-govt_australia_barwon_site-01.csv"
+for(focal_river in sort(needed_std)){
+  # focal_river <- "dwer-wa_australia_murray_02.csv"
 
   # Progress message
-  message("Extracting variable info from ", focal_river)
+  message("Extracting variable info from '", focal_river, "'")
 
   # Read in the data file
-  river_data <- read.csv(file = file.path("data", "01_standard", focal_river))
+  river_data <- read.csv(file = file.path("data", "01-B_std-structure", focal_river))
 
   # Extract needed info in format matching 'variables' sheet of data inventory
   var_list[[focal_river]] <- river_data %>% 
@@ -89,6 +89,6 @@ dplyr::glimpse(var_v99)
 
 # Export locally
 write.csv(x = var_v99, na = '', row.names = FALSE,
-  file = file.path("data", paste0(Sys.Date(), "_data-inventory-variable-expansion.csv")))
+  file = file.path("data", "temporary", paste0("data-inventory-variable-expansion_", Sys.Date(),".csv")))
 
 # End ----
