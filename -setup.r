@@ -23,6 +23,9 @@ dir.create(file.path("data", "01-D_std-contents"), showWarnings = FALSE)
 # Make a subfolder for diagnostics & tests
 dir.create(file.path("data", "tests"), showWarnings = FALSE)
 
+# And one for temporary, single-use stuff
+dir.create(file.path("data", "temporary"), showWarnings = FALSE)
+
 # Clear environment + collect garbage
 rm(list = ls()); gc()
 
