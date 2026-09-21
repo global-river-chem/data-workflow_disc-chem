@@ -29,7 +29,7 @@ if(redownload == T){
 
   # Identify master chemistry file
   (chem_master <- googledrive::drive_ls(path = googledrive::as_id("https://drive.google.com/drive/u/1/folders/1dTENIB5W2ClgW0z-8NbjqARiaGO2_A7W")) %>% 
-    dplyr::filter(name == "20260105_masterdata_chem.csv"))
+    dplyr::filter(name == "20260903_masterdata_chem.csv"))
 
   # Download it locally
   googledrive::drive_download(file = chem_master$id, overwrite = redownload,
@@ -133,7 +133,7 @@ disc_v03 %>%
 ## ---------------------------------- ##
 
 # Read in the old 'master' chem data
-chem_v01 <- read.csv(file = file.path("data", "preprocess-not-done", "20260105_masterdata_chem.csv"))
+chem_v01 <- read.csv(file = file.path("data", "preprocess-not-done", "20260903_masterdata_chem.csv"))
 
 # Check structure
 dplyr::glimpse(chem_v01)
